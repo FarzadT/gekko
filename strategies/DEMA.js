@@ -11,6 +11,7 @@ method.init = function() {
 
   this.currentTrend;
   this.requiredHistory = this.tradingAdvisor.historySize;
+  this.previousTrade = {};
 
   // define the indicators we need
   this.addIndicator('dema', 'DEMA', this.settings);
@@ -54,7 +55,16 @@ method.check = function(candle) {
 
     if(this.currentTrend !== 'down') {
       this.currentTrend = 'down';
-      this.advice('short');
+
+      if(!_.isEmpty(this.previousTrade)) {
+        var newBalance = this.previousTrade.portfolio.currency + this.previousTrade.extractFee(this.previousTrade.portfolio.asset * price);
+
+        if (newBalance - this.previousTrade.balance > 0) {
+          this.advice('short');
+        }
+      } else {
+        this.advice('short');
+      }
     } else
       this.advice();
 
@@ -63,5 +73,12 @@ method.check = function(candle) {
     this.advice();
   }
 }
+
+method.processTrade = function(trade) {
+  log.info('\t', 'Logging previous trade: ' + JSON.stringify(trade));
+  if (trade) {
+   this.previousTrade = trade;
+  }
+};
 
 module.exports = method;

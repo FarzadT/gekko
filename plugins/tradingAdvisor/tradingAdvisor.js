@@ -84,6 +84,10 @@ Actor.prototype.finish = function(done) {
   this.method.finish(done);
 }
 
+Actor.prototype.processTrade = function(trade) {
+  this.method.processTrade(trade);
+};
+
 // EMITTERS
 Actor.prototype.relayAdvice = function(advice) {
   this.emit('advice', advice);

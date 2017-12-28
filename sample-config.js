@@ -358,7 +358,7 @@ config.slack = {
   token: '',
   sendMessageOnStart: true,
   muteSoft: true,
-  channel: '' // #tradebot
+  channel: 'trading-bot' // #tradebot
 }
 
 config.ifttt = {

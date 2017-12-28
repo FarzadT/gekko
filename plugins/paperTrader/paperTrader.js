@@ -43,7 +43,8 @@ PaperTrader.prototype.relayTrade = function(advice) {
     price,
     portfolio: _.clone(this.portfolio),
     balance: this.portfolio.currency + this.price * this.portfolio.asset,
-    date: at
+    date: at,
+    extractFee: this.extractFee.bind(this)
   });
 }
 
