@@ -31,6 +31,15 @@ config.adviceWriter = {
 // configurable in the UIconfig
 config.adapter = UIconfig.adapter;
 
+config.slack = {
+  path: 'plugins/slack',
+  enabled: true,
+  token: 'xoxb-291489772656-pPv5SrF96RMg03qI8au6VbOk',
+  sendMessageOnStart: true,
+  muteSoft: true,
+  channel: '#trading-bot' // #tradebot
+}
+
 config.sqlite = {
   path: 'plugins/sqlite',
   version: 0.1,
